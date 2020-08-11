@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import img from '../assets/login_capa.png'
 import { FiLogIn } from 'react-icons/fi'
 import logo from '../../logo.svg'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './styles.css'
+import { useAuth } from '../../context/Auth'
 
 const Login: React.FC = () => {
+    const { signIn } = useAuth()
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
 
-    function handleLogin() {}
+    const handleLogin = useCallback((event) => {
+        event.preventDefault()
+        signIn({ login, senha })
+    }, [login, senha, signIn])
 
     return (
         <div className="login-container">

@@ -19,6 +19,7 @@ public class UsuarioService {
 
     public void criarUsuario(UsuarioDto usuarioDto) {
         Usuario usuario = Usuario.builder()
+                .nome(usuarioDto.getNome())
                 .login(usuarioDto.getLogin())
                 .senha(usuarioDto.getSenha())
                 .tipoUsuario(usuarioDto.getTipoUsuario())

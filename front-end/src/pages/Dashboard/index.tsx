@@ -1,9 +1,21 @@
 import React from 'react';
-
-// import { Container } from './styles';
+import { useAuth } from '../../context/Auth';
+import Admin from '../ADMIN';
+import Triador from '../TRIADOR';
+import Finalizador from '../FINALIZADOR';
 
 const Dashboard: React.FC = () => {
-  return <div />;
+  const { user } = useAuth()
+
+  if (user.tipoUsuario === 'ADMIN') {
+    return <Admin/>
+  }
+
+  if (user.tipoUsuario === 'TRIADOR') {
+    return <Triador/>
+  }
+
+  return <Finalizador/>
 }
 
 export default Dashboard;

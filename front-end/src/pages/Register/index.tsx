@@ -24,7 +24,7 @@ const Register: React.FC = () => {
             history.push('')
         })
         
-    }, [nome, login, senha, tipoUsuario])
+    }, [nome, login, senha, tipoUsuario, history])
 
     return (
         <div className="register-container">

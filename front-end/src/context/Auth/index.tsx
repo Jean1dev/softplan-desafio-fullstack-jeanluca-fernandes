@@ -3,8 +3,8 @@ import api from '../../services/api';
 
 interface User {
     id: string
-    tipoUsuario: string
-    name: string
+    tipoUsuario: 'ADMIN' | 'TRIADOR' | 'FINALIZADOR'
+    nome: string
     login: string
     senha: string
 }
@@ -25,7 +25,6 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps)
 const AuthProvider: React.FC = ({ children }) => {
     const [data, setData] = useState<User>(() => {
         const user = localStorage.getItem('@Tech:Softplan:User')
-
         if (user) {
             return JSON.parse(user)
         }
@@ -35,10 +34,14 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const signIn = useCallback(async ({ login, senha }) => {
         const response = await api.post('/login', { login, senha })
+        if (response.data) {
+            alert('logado com sucesso')
+            localStorage.setItem('@Tech:Softplan:User', JSON.stringify(response.data))
+            setData(response.data)
+            return
+        }
 
-        const { user } = response.data
-        localStorage.setItem('@GoBarber:user', JSON.stringify(user))
-        setData(user)
+        alert('ocorreu um erro no login cheque seus dados')
     }, [])
 
     const signOut = useCallback(() => {
