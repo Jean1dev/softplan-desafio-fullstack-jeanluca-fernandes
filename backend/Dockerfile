@@ -1,10 +1,7 @@
-FROM maven:3-jdk-8-alpine
+FROM openjdk:8-jdk-alpine
 
-WORKDIR /usr/src/app
+ARG JAR_FILE=target/*.jar
 
-COPY . /usr/src/app
-RUN mvn package
+COPY ${JAR_FILE} app.jar
 
-ENV PORT 8080
-EXPOSE $PORT
-CMD [ "sh", "-c", "mvn -Dserver.port=${PORT} spring-boot:run" ]
+ENTRYPOINT ["java","-jar","/app.jar"]
