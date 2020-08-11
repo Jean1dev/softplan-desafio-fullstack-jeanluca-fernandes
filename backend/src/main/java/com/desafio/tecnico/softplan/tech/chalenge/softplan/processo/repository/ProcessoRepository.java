@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ProcessoRepository extends MongoRepository<Processo, String> {
 
-    @Query(" 'finalizado' : false ")
+    @Query("{ 'finalizado' : false }")
     List<Processo> buscarAbertos();
 }

@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import api from '../../../services/api'
+import '../../commons/styles.modal.css'
 
 interface IUsuario {
     id: string

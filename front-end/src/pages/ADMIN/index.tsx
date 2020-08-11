@@ -48,7 +48,7 @@ const Admin: React.FC = () => {
   }
 
   return (
-    <div className="profile-container">
+    <div className="dashboard-container">
       <header>
         <span>Bem vindo {user.nome}</span>
 

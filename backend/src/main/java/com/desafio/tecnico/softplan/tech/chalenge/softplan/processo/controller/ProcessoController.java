@@ -27,8 +27,19 @@ public class ProcessoController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping(value = "finalizar")
+    public ResponseEntity finalizar(@RequestBody ProcessoDto processoDto) {
+        service.finalizarProcesso(processoDto);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping
     public List<Processo> buscarProcessos() {
         return service.buscarProcessos();
+    }
+
+    @GetMapping(value = "pendentes")
+    public List<Processo> buscarPendentes() {
+        return service.buscarAbertos();
     }
 }

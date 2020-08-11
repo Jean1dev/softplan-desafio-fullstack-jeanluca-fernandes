@@ -9,6 +9,7 @@ interface IProcesso {
   id: string
   parecer: string
   responsaveis: []
+  finalizado: boolean
 }
 
 const Triador: React.FC = () => {
@@ -30,7 +31,7 @@ const Triador: React.FC = () => {
   }, [history])
 
   return (
-    <div className="profile-container">
+    <div className="dashboard-container">
       <header>
         <span>Bem vindo {user.nome}</span>
 
@@ -52,6 +53,7 @@ const Triador: React.FC = () => {
             <strong>Parecer:</strong>
             <p>{processo.parecer}</p>
 
+            <strong>Ja foi avaliado por um tecnico: { processo.finalizado ? 'Sim' : 'Nāo'}</strong>
             <button type="button" onClick={() => update(processo)}>
               <FiEdit size={20} color="#00B0FF"></FiEdit>
             </button>
