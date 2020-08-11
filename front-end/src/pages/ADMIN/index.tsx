@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../../context/Auth'
-import { Link, useHistory } from 'react-router-dom'
-import { FiPower, FiTrash2, FiRefreshCcw } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+import { FiPower, FiTrash2, FiRefreshCcw, FiEdit } from 'react-icons/fi'
 import './styles.css'
 import api from '../../services/api';
 import UsuarioModal from '../../components/Modal/Usuario';
@@ -18,19 +18,34 @@ const Admin: React.FC = () => {
   const { user, signOut } = useAuth()
   const [data, setData] = useState<IUsuario[]>([])
   const [openModal, setOpenModal] = useState(false)
+  const [refresh, setRefresh] = useState(false)
+  const [usuarioEdit, setUsuarioEdit] = useState(null)
 
   useEffect(() => {
+    console.log('useeffect')
     api.get('usuarios').then(response => {
       setData(response.data)
     })
+  }, [refresh])
+
+  const refreshScreen = useCallback(() => setRefresh(!refresh), [refresh])
+
+  const update = useCallback(usuario => {
+    setOpenModal(true)
+    setUsuarioEdit(usuario)
+  }, [])
+
+  const insertNewUser = useCallback(() => {
+    setOpenModal(true)
+    setUsuarioEdit(null)
   }, [])
 
   const remover = useCallback(id => {
-
-  }, [])
+    api.delete(`usuarios/${id}`).then(() => setRefresh(!refresh))
+  }, [refresh])
 
   if (openModal) {
-    return <UsuarioModal onClose={() => setOpenModal(false)}/>
+    return <UsuarioModal onClose={() => setOpenModal(false)} usuario={usuarioEdit}/>
   }
 
   return (
@@ -38,9 +53,8 @@ const Admin: React.FC = () => {
       <header>
         <span>Bem vindo {user.nome}</span>
 
-        <Link className="button" to="#" onClick={() => setOpenModal(true)}>Cadastre um novo caso</Link>
-        {/* <button className="button" type="button" onClick={() => setOpenModal(true)}>Cadastre um novo Usuario</button> */}
-        <button type="button" onClick={() => signOut()}>
+        <Link className="button" to="#" onClick={insertNewUser}>Cadastre um novo usuario</Link>
+        <button type="button" onClick={refreshScreen}>
           <FiRefreshCcw size={18} color="#00B0FF"></FiRefreshCcw>
         </button>
         <button type="button" onClick={() => signOut()}>
@@ -54,15 +68,17 @@ const Admin: React.FC = () => {
       <ul>
         {data.map(usuario => (
           <li key={usuario.id}>
-            <strong>CASO:</strong>
+            <strong>Nome:</strong>
             <p>{usuario.nome}</p>
-            <strong>DECRICAO:</strong>
+            <strong>Tipo:</strong>
             <p>{usuario.tipoUsuario}</p>
-            {/* <strong>VALOR R$</strong>
-            <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(caso.value)}</p> */}
 
+            <button type="button" onClick={() => update(usuario)}>
+              <FiEdit size={20} color="#00B0FF"></FiEdit>
+            </button>
+            
             <button type="button" onClick={() => remover(usuario.id)}>
-              <FiTrash2 size={20} color="#a8a8b3"></FiTrash2>
+              <FiTrash2 size={20} color="#00B0FF"></FiTrash2>
             </button>
           </li>
         ))}

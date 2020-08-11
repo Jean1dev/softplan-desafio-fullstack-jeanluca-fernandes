@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react'
-import img from '../assets/login_capa.png'
+import img from '../../assets/login_capa.png'
 import { FiLogIn } from 'react-icons/fi'
 import logo from '../../logo.svg'
 import { Link } from 'react-router-dom'
-import './styles.css'
 import { useAuth } from '../../context/Auth'
+import './styles.css'
 
 const Login: React.FC = () => {
     const { signIn } = useAuth()

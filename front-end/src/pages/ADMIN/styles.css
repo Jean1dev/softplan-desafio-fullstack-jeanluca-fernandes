@@ -52,7 +52,7 @@
 }
 
 .profile-container ul li {
-    background: #FFF;
+    background:#00B0FF;
     padding: 24px;
     border-radius: 8px;
     position: relative;
@@ -65,6 +65,13 @@
     border: 0;
 }
 
+.profile-container ul li button + button {
+    position: absolute;
+    right: 46;
+    top: 50px;
+    border: 0;
+}
+
 .profile-container ul li button {
     opacity: 0.8;
 }
@@ -72,7 +79,7 @@
 .profile-container ul li strong {
     display: block;
     margin-bottom: 16px;
-    color: #41414d;
+    color: #000;
 }
 
 .profile-containerul ul li p + strong{
@@ -80,7 +87,7 @@
 }
 
 .profile-container ul li p {
-    color: #737380;
+    color: #000;
     line-height: 21px;
     font-size: 16px;
 }

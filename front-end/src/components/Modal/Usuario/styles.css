@@ -1,14 +1,8 @@
 .modal.container {
-  height: 100%;
   background: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 50%;
 }
 
 .modal {
-    
   width: 500px;
   background: white;
   border: 1px solid #ccc;
@@ -34,32 +28,42 @@
     offset-distance: 100%;
   }
 }
+
 @media (prefers-reduced-motion) {
   .modal {
     offset-path: none;
   }
 }
+
 .modal h2 {
   border-bottom: 1px solid #ccc;
   padding: 1rem;
   margin: 0;
 }
+
 .modal .content {
   padding: 1rem;
 }
+
+.modal .content form input {
+  margin-top: 8px;
+}
+
 .modal .actions {
   border-top: 1px solid #ccc;
   background: #eee;
   padding: 0.5rem 1rem;
 }
+
 .modal .actions button {
   border: 0;
-  background: #78f89f;
+  background: #FF0049;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
   line-height: 1;
 }
+
 #centered-toggle-button {
   position: absolute;
 }

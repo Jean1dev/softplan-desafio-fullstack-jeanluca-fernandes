@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouteProps as ReactRouterProps, Route as ReactDOMRoute, Redirect, Route } from 'react-router-dom'
+import { RouteProps as ReactRouterProps, Route as ReactDOMRoute, Redirect } from 'react-router-dom'
 import { useAuth } from './context/Auth';
 
 interface RouteProps extends ReactRouterProps {
@@ -9,7 +9,7 @@ interface RouteProps extends ReactRouterProps {
 
 const RouteWrapper: React.FC<RouteProps> = ({ isPrivate = false, component: Component, ...rest }) => {
     const { user } = useAuth()
-    const temUser = Object.keys(user).length == 0
+    const temUser = Object.keys(user).length === 0
 
     return (
         <ReactDOMRoute

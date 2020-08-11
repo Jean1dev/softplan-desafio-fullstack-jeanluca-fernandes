@@ -44,8 +44,8 @@ public class UsuarioService {
             Usuario usuario = optionalUsuario.get();
             usuario.setLogin(usuarioDto.getLogin());
             usuario.setSenha(usuarioDto.getSenha());
-            usuario.setNome(usuario.getNome());
-            usuario.setTipoUsuario(usuario.getTipoUsuario());
+            usuario.setNome(usuarioDto.getNome());
+            usuario.setTipoUsuario(usuarioDto.getTipoUsuario());
             repository.save(usuario);
         }
     }
