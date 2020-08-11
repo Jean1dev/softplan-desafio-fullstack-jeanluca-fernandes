@@ -1,3 +1,14 @@
+<h1 align="center">
+    Desafio tecnico softplan: front-end
+</h1>
+
+## :rocket: Info
+    Ola é a segunda vez que participo de um processo seletivo ai dentro, meu outro desafio que é somente de front-end é mais completo com gerenciamento de estado, testes unitarios, integracao continua com gitlab-CI, esta disponivel https://github.com/Jean1dev/desafio-tecnico-softplan caso queiram dar uma olhada
+
+## : URL base da Api
+
+alterar em src/services/api.ts
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
