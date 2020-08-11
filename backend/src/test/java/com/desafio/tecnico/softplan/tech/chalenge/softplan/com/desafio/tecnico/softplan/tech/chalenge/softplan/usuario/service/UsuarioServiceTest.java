@@ -59,4 +59,31 @@ public class UsuarioServiceTest {
 
         Assert.that(usuarios.size() == 2, "deveria ter apenas 2 usuarios na lista");
     }
+
+    @Test
+    public void deveRemoverUsuario() {
+        usuarioService.remover("ID UNICO");
+        Mockito.verify(repository, Mockito.times(1)).deleteById(ArgumentMatchers.eq("ID UNICO"));
+    }
+
+    @Test
+    public void deveAtualizarUsuario() {
+        final String ID = "id unico";
+        UsuarioDto usuarioDto = new UsuarioDto();
+        usuarioDto.setLogin("login");
+        usuarioDto.setSenha("senha");
+        usuarioDto.setId(ID);
+        usuarioDto.setNome("nome");
+        usuarioDto.setTipoUsuario(TipoUsuario.ADMIN);
+
+        Usuario usuario = Usuario.builder()
+                .nome("jeanluca")
+                .tipoUsuario(TipoUsuario.FINALIZADOR)
+                .build();
+
+        Mockito.when(repository.findById(ArgumentMatchers.eq(ID))).thenReturn(java.util.Optional.ofNullable(usuario));
+
+        usuarioService.atualizar(usuarioDto);
+        Mockito.verify(repository, Mockito.times(1)).save(ArgumentMatchers.any(Usuario.class));
+    }
 }

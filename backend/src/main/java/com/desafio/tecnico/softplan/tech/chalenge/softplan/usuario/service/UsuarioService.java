@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,5 +31,21 @@ public class UsuarioService {
         return repository.findAll().stream()
                 .filter(usuario -> !TipoUsuario.ADMIN.equals(usuario.getTipoUsuario()))
                 .collect(Collectors.toList());
+    }
+
+    public void remover(String id) {
+        repository.deleteById(id);
+    }
+
+    public void atualizar(UsuarioDto usuarioDto) {
+        Optional<Usuario> optionalUsuario = repository.findById(usuarioDto.getId());
+        if (optionalUsuario.isPresent()) {
+            Usuario usuario = optionalUsuario.get();
+            usuario.setLogin(usuarioDto.getLogin());
+            usuario.setSenha(usuarioDto.getSenha());
+            usuario.setNome(usuario.getNome());
+            usuario.setTipoUsuario(usuario.getTipoUsuario());
+            repository.save(usuario);
+        }
     }
 }

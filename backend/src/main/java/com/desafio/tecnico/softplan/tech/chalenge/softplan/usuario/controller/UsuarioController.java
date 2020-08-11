@@ -25,4 +25,16 @@ public class UsuarioController {
     public List<Usuario> buscarUsuarios() {
         return service.buscarUsuarios();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity excluirUsuario(@PathVariable("id") String id) {
+        service.remover(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity atualizar(@RequestBody UsuarioDto usuarioDto) {
+        service.atualizar(usuarioDto);
+        return ResponseEntity.noContent().build();
+    }
 }
