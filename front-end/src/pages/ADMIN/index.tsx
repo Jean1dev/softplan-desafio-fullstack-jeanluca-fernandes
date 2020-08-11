@@ -22,7 +22,6 @@ const Admin: React.FC = () => {
   const [usuarioEdit, setUsuarioEdit] = useState(null)
 
   useEffect(() => {
-    console.log('useeffect')
     api.get('usuarios').then(response => {
       setData(response.data)
     })

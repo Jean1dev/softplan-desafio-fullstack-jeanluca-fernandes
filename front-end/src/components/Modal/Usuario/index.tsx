@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import './styles.css'
 import api from '../../../services/api'
 
 interface IUsuario {

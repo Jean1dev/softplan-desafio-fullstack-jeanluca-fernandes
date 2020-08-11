@@ -45,6 +45,7 @@ public class ProcessoService {
                 .map(usuarioDto -> {
                     return Usuario.builder()
                             .id(usuarioDto.getId())
+                            .nome(usuarioDto.getNome())
                             .build();
                 }).collect(Collectors.toList());
     }
