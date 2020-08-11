@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import logoImg from '../../logo.svg'
 import './styles.css'
+import api from '../../services/api'
 
 const Register: React.FC = () => {
+    const history = useHistory()
     const [nome, setNome] = useState('')
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
@@ -12,7 +14,16 @@ const Register: React.FC = () => {
 
     const handleRegister = useCallback((event) => {
         event.preventDefault()
-        console.log(nome, login, senha, tipoUsuario)
+        api.post('usuarios', {
+            nome,
+            login,
+            senha,
+            tipoUsuario
+        }).then(() => {
+            alert('Usuario criado com sucesso faça o login')
+            history.push('')
+        })
+        
     }, [nome, login, senha, tipoUsuario])
 
     return (
