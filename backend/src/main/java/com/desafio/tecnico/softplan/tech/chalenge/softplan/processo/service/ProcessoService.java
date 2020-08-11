@@ -22,6 +22,7 @@ public class ProcessoService {
         Processo processo = Processo.builder()
                 .parecer(processoDto.getParecer())
                 .responsaveis(remapearResponsaveis(processoDto.getResponsaveis()))
+                .finalizado(false)
                 .build();
 
         repository.save(processo);
@@ -34,6 +35,20 @@ public class ProcessoService {
             processoReal.setResponsaveis(remapearResponsaveis(processoDto.getResponsaveis()));
             repository.save(processoReal);
         }
+    }
+
+    public void finalizarProcesso(ProcessoDto processoDto) {
+        Optional<Processo> processo = repository.findById(processoDto.getId());
+        if (processo.isPresent()) {
+            Processo processoReal = processo.get();
+            processoReal.setParecer(processoDto.getParecer());
+            processoReal.setFinalizado(true);
+            repository.save(processoReal);
+        }
+    }
+
+    public List<Processo> buscarAbertos() {
+        return repository.buscarAbertos();
     }
 
     public List<Processo> buscarProcessos() {

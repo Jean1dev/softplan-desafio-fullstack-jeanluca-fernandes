@@ -24,4 +24,6 @@ public class Processo implements Serializable {
     private String parecer;
 
     private List<Usuario> responsaveis;
+
+    private Boolean finalizado;
 }

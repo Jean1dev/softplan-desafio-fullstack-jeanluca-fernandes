@@ -1,9 +1,9 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft, FiPlus } from 'react-icons/fi';
+import React, { useCallback, useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { FiArrowLeft, FiPlus } from 'react-icons/fi'
 import img from '../../assets/add_processo.png'
+import api from '../../services/api'
 import './styles.css'
-import api from '../../services/api';
 
 interface IUsuario {
     id: string
